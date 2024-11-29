@@ -1,16 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
-  `,
-  styles: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule, NgbModule], 
+  styleUrls: ['app.component.css'],
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
-  title = 'cli';
+  
+  
+  isDropdownOpen= false;
+  
+  constructor(private router: Router) { }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 }

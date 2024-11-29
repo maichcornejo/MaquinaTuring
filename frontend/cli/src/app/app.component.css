@@ -1,0 +1,15 @@
+/* Contenedor principal */
+.container {
+    background-color: #f9f9f9; /* Fondo claro */
+    border: 2px solid #ccc; /* Borde sutil */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  }
+  
+  /* Título principal */
+  h1 {
+    color: #2c3e50; /* Tono azul oscuro */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }

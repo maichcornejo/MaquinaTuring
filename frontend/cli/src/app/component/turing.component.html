@@ -1,0 +1,14 @@
+<div class="container text-center">
+  <h4>Estado actual: {{ estadoActual }}</h4>
+
+  <div class="mb-4">
+    <button class="btn btn-primary me-2" (click)="cargarGenerica()">Cargar Máquina Genérica</button>
+    <button class="btn btn-secondary" (click)="cargarFibonacci()">Cargar Fibonacci</button>
+  </div>
+
+  <!-- Canvas para la cinta -->
+  <canvas #turingCanvas id="turingCanvas" width="800" height="100" style="border: 1px solid #ccc;"></canvas>
+
+
+  <button class="btn btn-success mt-3" (click)="ejecutarPaso()">Ejecutar Paso</button>
+</div>

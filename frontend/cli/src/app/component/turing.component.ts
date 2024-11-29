@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TuringService } from '../service/turing.service';
 
-// Importar los JSON directamente
 import genericJson from '../../assets/json/turing-generico.json';
 import fibonacciJson from '../../assets/json/fibonacci.json';
 
@@ -17,7 +16,7 @@ export class TuringComponent implements OnInit {
   private ctx!: CanvasRenderingContext2D;
   private cellWidth = 50; // Ancho de cada celda
   private cellHeight = 50; // Alto de cada celda
-  private offset = 10; // Desplazamiento entre celdas
+  private offset = 10; 
   cinta: string[] = [];
   posicionCabezal = 0;
   estadoActual = '';
@@ -29,7 +28,6 @@ export class TuringComponent implements OnInit {
     this.cargarGenerica(); // Cargar la máquina genérica al inicio
   }
 
-  // Inicializar el canvas
   initializeCanvas(): void {
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext('2d')!;
@@ -38,39 +36,37 @@ export class TuringComponent implements OnInit {
 
   renderCinta(): void {
     const canvas = this.canvasRef.nativeElement;
-    this.ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
+    const ctx = this.ctx;
   
-    const totalCeldasVisibles = Math.floor(canvas.width / (this.cellWidth + this.offset)); // Número de celdas visibles en el canvas
-    const inicio = Math.max(0, this.posicionCabezal - Math.floor(totalCeldasVisibles / 2)); // Cálculo para centrar el cabezal
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-    // Dibujar las celdas
-    for (let i = inicio; i < inicio + totalCeldasVisibles && i < this.cinta.length; i++) {
-      const x = (i - inicio) * (this.cellWidth + this.offset);
-      const y = 20;
+
+    this.cinta.forEach((celda, index) => {
+      const x = index * (this.cellWidth + this.offset); 
+      const y = 20; 
   
-      // Dibujar celda
-      this.ctx.fillStyle = i === this.posicionCabezal ? '#e74c3c' : '#ffffff';
-      this.ctx.strokeStyle = '#bdc3c7';
-      this.ctx.fillRect(x, y, this.cellWidth, this.cellHeight);
-      this.ctx.strokeRect(x, y, this.cellWidth, this.cellHeight);
+
+      ctx.fillStyle = index === this.posicionCabezal ? '#e74c3c' : '#ffffff'; // Head en rojo
+      ctx.strokeStyle = '#bdc3c7';
+      ctx.fillRect(x, y, this.cellWidth, this.cellHeight);
+      ctx.strokeRect(x, y, this.cellWidth, this.cellHeight);
   
-      // Dibujar texto
-      this.ctx.fillStyle = i === this.posicionCabezal ? '#ffffff' : '#34495e';
-      this.ctx.font = '20px Arial';
-      this.ctx.textAlign = 'center';
-      this.ctx.textBaseline = 'middle';
-      this.ctx.fillText(this.cinta[i], x + this.cellWidth / 2, y + this.cellHeight / 2);
-    }
+      ctx.fillStyle = index === this.posicionCabezal ? '#ffffff' : '#34495e'; 
+      ctx.font = '20px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(celda || '_', x + this.cellWidth / 2, y + this.cellHeight / 2); 
+    });
   }
   
-   // Cargar JSON genérico
    cargarGenerica(): void {
     this.turingService.cargarDesdeJSON(genericJson);
     this.actualizarVista();
   }
 
-  // Cargar JSON de Fibonacci
+
   cargarFibonacci(): void {
+    
     this.turingService.cargarDesdeJSON(fibonacciJson);
     this.actualizarVista();
   }
@@ -87,6 +83,6 @@ export class TuringComponent implements OnInit {
     this.cinta = this.turingService.getCinta();
     this.posicionCabezal = this.turingService.getPosicionCabezal();
     this.estadoActual = this.turingService.getEstadoActual().id;
-    this.renderCinta(); // Redibujar la cinta
+    this.renderCinta(); // Redibujo la cinta
   }
 }

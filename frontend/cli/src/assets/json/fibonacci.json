@@ -1,39 +1,38 @@
 {
-    "Q": "q0,qInit,qSuma,qCarry,qMover,qFinal",
-    "Σ": "0,1,|,_",
-    "Γ": "0,1,|,_",
-    "S": "q0",
-    "b": "_",
-    "F": "qFinal",
-    "transitions": {
-      "q0": {
-        "_": ["qInit", "1", "derecha"]
-      },
-      "qInit": {
-        "_": ["qInit", "1", "derecha"],
-        "1": ["qInit", "|", "derecha"],
-        "|": ["qSuma", "_", "derecha"]
-      },
-      "qSuma": {
-        "0": ["qCarry", "1", "izquierda"],
-        "1": ["qCarry", "0", "izquierda"],
-        "|": ["qMover", "|", "derecha"],
-        "_": ["qFinal", "_", "derecha"]
-      },
-      "qCarry": {
-        "0": ["qSuma", "1", "izquierda"],
-        "1": ["qCarry", "0", "izquierda"],
-        "|": ["qSuma", "|", "derecha"]
-      },
-      "qMover": {
-        "_": ["qFinal", "_", "derecha"],
-        "1": ["qMover", "1", "derecha"],
-        "0": ["qMover", "0", "derecha"],
-        "|": ["qSuma", "|", "derecha"]
-      },
-      "qFinal": {
-        "_": ["qFinal", "_", "derecha"]
-      }
+  "Q": "q0,qInit,qSuma,qCarry,qMover,qFinal",
+  "Σ": "0,1,|,_",
+  "Γ": "0,1,|,_",
+  "S": "q0",
+  "b": "_",
+  "F": "qFinal",
+  "transitions": {
+    "q0": {
+      "_": ["qInit", "1", "derecha"]
+    },
+    "qInit": {
+      "_": ["qInit", "1", "derecha"],
+      "1": ["qInit", "|", "derecha"],
+      "|": ["qSuma", "_", "derecha"]
+    },
+    "qSuma": {
+      "0": ["qCarry", "1", "izquierda"],
+      "1": ["qCarry", "0", "izquierda"],
+      "|": ["qMover", "|", "derecha"],
+      "_": ["qFinal", "_", "derecha"]
+    },
+    "qCarry": {
+      "0": ["qSuma", "1", "izquierda"],
+      "1": ["qCarry", "0", "izquierda"],
+      "|": ["qSuma", "|", "derecha"]
+    },
+    "qMover": {
+      "_": ["qFinal", "_", "derecha"],
+      "1": ["qMover", "1", "derecha"],
+      "0": ["qMover", "0", "derecha"],
+      "|": ["qSuma", "|", "derecha"]
+    },
+    "qFinal": {
+      "_": ["qFinal", "_", "derecha"]
     }
   }
-  
+}

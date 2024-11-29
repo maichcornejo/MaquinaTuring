@@ -16,13 +16,12 @@ export class TuringService {
   private simboloBlanco: string;
 
   constructor() {
-    // Inicialización vacía, los datos se cargarán desde el JSON
     this.cinta = new Cinta(0);
     this.cabezal = new Head();
     this.estados = new Map();
     this.transiciones = [];
-    this.estadoActual = new Estado(''); // Temporal, se actualizará al cargar
-    this.simboloBlanco = '_'; // Valor por defecto
+    this.estadoActual = new Estado(''); 
+    this.simboloBlanco = '_'; 
   }
 
   cargarDesdeJSON(data: any): void {
